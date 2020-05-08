@@ -10,8 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-204dp"
-        tools:layout_editor_absoluteY="16dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="63dp"
+        tools:ignore="MissingConstraints">
 
 
         <Button
@@ -75,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/regis" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/nama"
             android:layout_width="260dp"
             android:layout_height="38dp"
             android:layout_marginTop="8dp"
@@ -120,7 +121,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/nama" />
 
         <EditText
             android:id="@+id/pin"
@@ -145,11 +146,11 @@
             android:layout_height="38dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/roundedcorner"
-            android:textColorHint="@color/colorHint"
             android:gravity="center"
             android:hint="No Handphone"
-            android:textSize="15dp"
             android:inputType="phone"
+            android:textColorHint="@color/colorHint"
+            android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
@@ -163,9 +164,9 @@
             android:background="@drawable/textarea"
             android:gravity="left"
             android:hint="Alamat"
-            android:textSize="15dp"
             android:inputType="textMultiLine"
             android:textColorHint="@color/colorHint"
+            android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
@@ -194,14 +195,17 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <RadioButton
-                android:id="@+id/lk"
+                android:id="@+id/laki-laki"
+                android:hint="laki-laki"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="Laki-laki"
                 android:textColor="@color/colorHint" />
 
             <RadioButton
+                android:id="@+id/perempuan"
+                android:hint="perempuan"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Perempuan"
