@@ -196,7 +196,7 @@
 
             <RadioButton
                 android:id="@+id/laki-laki"
-                android:hint="Laki - Laki"
+                android:hint="laki-laki"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Laki-laki"
@@ -204,7 +204,7 @@
 
             <RadioButton
                 android:id="@+id/perempuan"
-                android:hint="Perempuan"
+                android:hint="perempuan"
                 android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

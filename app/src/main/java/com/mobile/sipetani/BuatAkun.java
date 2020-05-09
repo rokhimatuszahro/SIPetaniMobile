@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +31,6 @@ public class BuatAkun extends AppCompatActivity {
     TextView lupaPass, punyaAkun;
     EditText email, username, password, pin;
     RadioGroup jenkel;
-    RadioButton radioButton;
     Button btnRegis;
     ProgressDialog pd;
 
@@ -52,7 +50,6 @@ public class BuatAkun extends AppCompatActivity {
         btnRegis = (Button) findViewById(R.id.btnRegis);
 
         pd = new ProgressDialog(BuatAkun.this);
-
 
         lupaPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +75,6 @@ public class BuatAkun extends AppCompatActivity {
         btnRegis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                int selectedId = jenkel.getCheckedRadioButtonId();
-                radioButton = (RadioButton)findViewById(selectedId);
 
                 //Menjalankan fungsi privat registdata()
                 regisData();
@@ -125,7 +119,7 @@ public class BuatAkun extends AppCompatActivity {
                 map.put("email", email.getText().toString());
                 map.put("pin", pin.getText().toString());
                 map.put("password", password.getText().toString());
-                map.put("jenkel", radioButton.getText().toString());
+                map.put("jenkel", String.valueOf(jenkel.getCheckedRadioButtonId()));
                 return map;
             }
         };
