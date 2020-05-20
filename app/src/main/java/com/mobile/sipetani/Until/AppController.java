@@ -9,7 +9,11 @@ import com.android.volley.toolbox.Volley;
 
 public class AppController extends Application {
     private static final String TAG = AppController.class.getSimpleName();
+<<<<<<< HEAD
     private static AppController instance ;
+=======
+    private static AppController instance  ;
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
     RequestQueue mRequestQueue;
     @Override
     public void onCreate() {
@@ -17,11 +21,22 @@ public class AppController extends Application {
         instance = this;
     }
 
+<<<<<<< HEAD
     public static synchronized AppController getInstance() {return instance; }
 
     private RequestQueue getRequestQueue()
     {
         if (mRequestQueue == null)
+=======
+    public static synchronized AppController getInstance()
+    {
+        return instance;
+    }
+
+    private RequestQueue getRequestQueue()
+    {
+        if(mRequestQueue == null)
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
         {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }

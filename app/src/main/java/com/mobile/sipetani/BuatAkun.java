@@ -9,7 +9,10 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+<<<<<<< HEAD
 import android.widget.RadioButton;
+=======
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,11 +31,19 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+<<<<<<< HEAD
 public class BuatAkun extends AppCompatActivity {
     TextView lupaPass, punyaAkun;
     EditText email, username, password, pin, no, alamat;
     RadioGroup jenkel;
     RadioButton radioButton;
+=======
+
+public class BuatAkun extends AppCompatActivity {
+    TextView lupaPass, punyaAkun;
+    EditText email, username, password, pin;
+    RadioGroup jenkel;
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
     Button btnRegis;
     ProgressDialog pd;
 
@@ -41,6 +52,7 @@ public class BuatAkun extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buat_akun);
 
+<<<<<<< HEAD
         email = (EditText) findViewById(R.id.email);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.pass);
@@ -53,6 +65,19 @@ public class BuatAkun extends AppCompatActivity {
         btnRegis = (Button) findViewById(R.id.btnRegis);
         pd = new ProgressDialog(this);
 
+=======
+        email = (EditText)findViewById(R.id.email);
+        username = (EditText)findViewById(R.id.nama);
+        password = (EditText)findViewById(R.id.pass);
+        pin = (EditText)findViewById(R.id.pin);
+        jenkel = (RadioGroup)findViewById(R.id.jenKel);
+
+        lupaPass = (TextView)findViewById(R.id.lpPass);
+        punyaAkun = (TextView)findViewById(R.id.punyaAkun);
+        btnRegis = (Button) findViewById(R.id.btnRegis);
+
+        pd = new ProgressDialog(BuatAkun.this);
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
 
         lupaPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +89,10 @@ public class BuatAkun extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
         punyaAkun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,11 +103,16 @@ public class BuatAkun extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
         // Ketika tombol Registrasi diklik
+=======
+        //Ketika tombol registrasi diklik
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
         btnRegis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+<<<<<<< HEAD
                 // Nilai dari radio Button
 //                int radioButtonId = jenkel.getCheckedRadioButtonId();
 //                radioButton = (RadioButton)findViewById(radioButtonId);
@@ -190,5 +223,56 @@ public class BuatAkun extends AppCompatActivity {
             }
         };
         AppController.getInstance().addToRequestQueue(sendData);
+=======
+                //Menjalankan fungsi privat registdata()
+                regisData();
+
+            }
+        });
+>>>>>>> f004cc61df84e1ed22d0471bb0aaa837f4dba325
     }
+
+    // Fungsi mengolah data dengan api
+    private void regisData()
+    {
+        pd.setMessage("Registrasi Akun");
+        pd.setCancelable(false);
+        pd.show();
+
+        StringRequest sendData = new StringRequest(Request.Method.POST, ServerAPI.URL_REGISTRASI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        pd.cancel();
+                        try {
+                            JSONObject res = new JSONObject(response);
+                            Toast.makeText(BuatAkun.this, "pesan : "+   res.getString("message") , Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                          e.printStackTrace();
+                        }
+
+                        startActivity( new Intent(BuatAkun.this,MainActivity.class));
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        pd.cancel();
+                        Toast.makeText(BuatAkun.this, "pesan : Gagal Insert Data", Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> map = new HashMap<>();
+                map.put("nama", username.getText().toString());
+                map.put("email", email.getText().toString());
+                map.put("pin", pin.getText().toString());
+                map.put("password", password.getText().toString());
+                map.put("jenkel", String.valueOf(jenkel.getCheckedRadioButtonId()));
+                return map;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(sendData);
+    }
+
 }
