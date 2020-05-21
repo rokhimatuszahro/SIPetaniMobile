@@ -45,6 +45,7 @@ public class BuatAkun extends AppCompatActivity {
         username = (EditText)findViewById(R.id.username);
         password = (EditText)findViewById(R.id.pass);
         pin = (EditText)findViewById(R.id.pin);
+        no = (EditText)findViewById(R.id.noHp);
         alamat = (EditText)findViewById(R.id.alamat);
         jenkel = (RadioGroup)findViewById(R.id.jenKel);
         lupaPass = (TextView)findViewById(R.id.lpPass);
