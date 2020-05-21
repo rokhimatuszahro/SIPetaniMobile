@@ -2,7 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+<<<<<<< HEAD
     buildToolsVersion '28.0.3'
+=======
+    buildToolsVersion "28.0.3"
+>>>>>>> 865beeff7700c7511f197a3c04b85c22fc0cecf6
     defaultConfig {
         applicationId "com.mobile.sipetani"
         minSdkVersion 21
