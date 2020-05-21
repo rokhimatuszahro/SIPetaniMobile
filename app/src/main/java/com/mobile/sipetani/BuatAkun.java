@@ -134,8 +134,8 @@ public class BuatAkun extends AppCompatActivity {
                 return;
             }
             else if (NO.isEmpty()){
-                pin.setError("No Telp kosong, isikan No Telp Anda!");
-                pin.requestFocus();
+                no.setError("No Telp kosong, isikan No Telp Anda!");
+                no.requestFocus();
                 return;
             }
             else if (NO.length()<11 || NO.length()>13){
