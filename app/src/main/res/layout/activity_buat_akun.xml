@@ -198,10 +198,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Laki-laki"
+                android:text="Laki-Laki"
                 android:textColor="@color/colorHint" />
 
             <RadioButton
+                android:id="@+id/perempuan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Perempuan"

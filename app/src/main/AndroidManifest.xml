@@ -2,26 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mobile.sipetani">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name="com.mobile.sipetani.Until.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/botani"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/botani"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tiket"></activity>
-        <activity android:name=".Profil" />
-        <activity android:name=".DetailPemesanan" />
-        <activity android:name=".DetailPembayaran" />
+        <activity android:name="com.mobile.sipetani.Tiket"></activity>
+        <activity android:name="com.mobile.sipetani.Profil" />
+        <activity android:name="com.mobile.sipetani.DetailPemesanan" />
+        <activity android:name="com.mobile.sipetani.DetailPembayaran" />
         <activity
-            android:name=".BuatAkun"
+            android:name="com.mobile.sipetani.BuatAkun"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LupaPassword"
+            android:name="com.mobile.sipetani.LupaPassword"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Navigation" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.mobile.sipetani.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
