@@ -114,14 +114,14 @@ public class LupaPassword extends AppCompatActivity {
                             JSONObject res = new JSONObject(response);
                             if (res.optString("success").equals("1")) {
                                 errorMessage.setBackgroundResource(R.drawable.roundedcornersuccess);
-                                errorMessage.setText("Password Baru : " + res.getString("password baru"));
+                                errorMessage.setText("Password Baru : " + res.getString("password_baru"));
                                 errorMessage.setTextColor(Color.parseColor("#25a146"));
                                 errorMessage.setVisibility(View.VISIBLE);
                             } else if (res.optString("success").equals("2")) {
-                                pin.setText(res.getString("message"));
+                                pin.setError(res.getString("message"));
                                 pin.requestFocus();
                             } else if (res.optString("success").equals("3")) {
-                                email.setText(res.getString("message"));
+                                email.setError(res.getString("message"));
                                 email.requestFocus();
                             }
                         } catch (JSONException e) {

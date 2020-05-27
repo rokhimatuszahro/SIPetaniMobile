@@ -46,17 +46,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <Button
                 android:id="@+id/tglBerkunjung"
                 android:layout_width="260dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="28dp"
+                android:textColor="@color/colorHint"
                 android:background="@drawable/roundedcorner"
                 android:gravity="center"
-                android:hint="Masukkan Tanggal Berkunjung"
-                android:inputType="datetime"
-                android:textColorHint="@color/colorHint"
+                android:hint="Tanggal Berkunjung"
                 android:textSize="15dp"
+                android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pemesanan" />

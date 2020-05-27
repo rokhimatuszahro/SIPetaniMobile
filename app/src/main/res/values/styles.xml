@@ -6,6 +6,11 @@
         <item name="colorPrimary">@color/titleBar</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:datePickerDialogTheme">@style/DialogTheme</item>
+    </style>
+
+    <style name="DialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/titleBar</item>
     </style>
 
     <!-- Base application theme no action bar -->
