@@ -1,4 +1,4 @@
-package com.mobile.sipetani;
+package com.mobile.sipetani.Model;
 
 public class SaranaBelajar {
     private String judul;

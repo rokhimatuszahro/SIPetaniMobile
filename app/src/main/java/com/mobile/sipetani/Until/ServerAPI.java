@@ -7,4 +7,7 @@ public class ServerAPI {
     public static final String URL_PEMESANAN = "http://192.168.43.178/sipetani/ApiMobile/apiPemesanan";
     public static final String URL_DETAIL_PEMESANAN = "http://192.168.43.178/sipetani/ApiMobile/apiDetailPemesanan";
     public static final String URL_UPLOAD_BUKTI = "http://192.168.43.178/sipetani/ApiMobile/apiUploadBukti";
+    public static final String URL_TIKET = "http://192.168.43.178/sipetani/ApiMobile/apiTiket";
+    public static final String URL_PROFILE = "http://192.168.43.178/sipetani/ApiMobile/apiProfile";
+    public static final String URL_EDIT_PROFILE = "http://192.168.43.178/sipetani/ApiMobile/apiEditProfile";
 }

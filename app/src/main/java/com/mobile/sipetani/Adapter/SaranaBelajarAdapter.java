@@ -1,4 +1,4 @@
-package com.mobile.sipetani;
+package com.mobile.sipetani.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mobile.sipetani.R;
+import com.mobile.sipetani.Model.SaranaBelajar;
 
 import java.util.ArrayList;
 import java.util.List;

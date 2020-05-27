@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mobile.sipetani.Adapter.SaranaBelajarAdapter;
+import com.mobile.sipetani.Model.SaranaBelajar;
+
 import java.util.ArrayList;
 import java.util.List;
 

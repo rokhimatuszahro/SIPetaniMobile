@@ -79,15 +79,14 @@ public class BuatAkun extends AppCompatActivity {
             public void onClick(View v) {
                 int radioButtonId = jenkel.getCheckedRadioButtonId();
                 radioButton = (RadioButton)findViewById(radioButtonId);
+
                 regisData();
             }
         });
     }
 
+    // Fungsi mengolah data dengan API
     private void regisData() {
-        pd.setMessage("Registrasi Akun");
-        pd.setCancelable(false);
-        pd.show();
 
         final String Email = email.getText().toString();
         final String Username = username.getText().toString();
@@ -95,9 +94,9 @@ public class BuatAkun extends AppCompatActivity {
         final String PIN = pin.getText().toString();
         final String NO = no.getText().toString();
         final String Alamat = alamat.getText().toString();
+        final String Jenkel = radioButton.getText().toString();
 
         try {
-            pd.cancel();
             if (Email.isEmpty()){
                 email.setError("Email kosong, isikan Email Anda!");
                 email.requestFocus();
@@ -152,6 +151,10 @@ public class BuatAkun extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        pd.setMessage("Registrasi Akun...");
+        pd.setCancelable(false);
+        pd.show();
+
         StringRequest sendData = new StringRequest(Request.Method.POST, ServerAPI.URL_REGISTRASI,
                 new Response.Listener<String>() {
                     @Override
@@ -160,7 +163,7 @@ public class BuatAkun extends AppCompatActivity {
                         try {
                             JSONObject res = new JSONObject(response);
                             if (res.optString("success").equals("1")) {
-                                Toast.makeText(BuatAkun.this, "pesan : " + res.getString("message"),
+                                Toast.makeText(BuatAkun.this, res.getString("message"),
                                         Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(BuatAkun.this, MainActivity.class));
                             } else if (res.optString("success").equals("0")) {
@@ -182,11 +185,11 @@ public class BuatAkun extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError{
                 Map<String, String> map = new HashMap<>();
-                map.put("nama", username.getText().toString());
-                map.put("email", email.getText().toString());
-                map.put("pin", pin.getText().toString());
-                map.put("password", password.getText().toString());
-                map.put("jenkel", radioButton.getText().toString());
+                map.put("nama", Username);
+                map.put("email", Email);
+                map.put("pin", PIN);
+                map.put("password", Password);
+                map.put("jenkel", Jenkel);
                 return map;
             }
         };
