@@ -4,12 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mobile.sipetani.SharedPreference.SharedPreferenceHelper;
+
+import java.util.Map;
 
 public class Navigation extends AppCompatActivity {
+
+    SharedPreferenceHelper sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,18 @@ public class Navigation extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BerandaFragment()).commit();
+    }
+
+    // Cek apakah belum login pada bagian akun
+    @Override
+    public void onStart(){
+        super.onStart();
+        sp = new SharedPreferenceHelper(this);
+
+        if (!sp.getLogin(true)){
+            startActivity(new Intent(Navigation.this, MainActivity.class));
+            finish();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
