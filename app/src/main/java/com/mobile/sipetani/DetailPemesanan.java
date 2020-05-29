@@ -230,7 +230,7 @@ public class DetailPemesanan extends AppCompatActivity {
                                 alamat.setText(data.getString("alamat"));
                                 tgl.setText(data.getString("tanggal_berkunjung"));
                                 jumlah.setText(data.getString("jumlah_tiket"));
-                                total.setText("IDR "+data.getString("total_pembayaran"));
+                                total.setText("IDR "+NumberFormat.getNumberInstance(Locale.US).format(data.getInt("total_pembayaran")));
                                 no.setText(data.getString("no_telp"));
                             } else if (res.optString("success").equals("2")) {
                                 startActivity(new Intent(DetailPemesanan.this, Navigation.class));
