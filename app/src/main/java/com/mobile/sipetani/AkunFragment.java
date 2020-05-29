@@ -18,14 +18,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.mobile.sipetani.SharedPreference.SharedPreferenceHelper;
+import com.mobile.sipetani.Helper.SharedPreferenceHelper;
 import com.mobile.sipetani.Until.AppController;
 import com.mobile.sipetani.Until.ServerAPI;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;

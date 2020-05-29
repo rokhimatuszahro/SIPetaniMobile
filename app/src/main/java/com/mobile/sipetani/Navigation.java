@@ -9,9 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.mobile.sipetani.SharedPreference.SharedPreferenceHelper;
-
-import java.util.Map;
+import com.mobile.sipetani.Helper.SharedPreferenceHelper;
 
 public class Navigation extends AppCompatActivity {
 

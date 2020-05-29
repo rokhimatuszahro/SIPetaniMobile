@@ -22,7 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.mobile.sipetani.SharedPreference.SharedPreferenceHelper;
+import com.mobile.sipetani.Helper.SharedPreferenceHelper;
 import com.mobile.sipetani.Until.AppController;
 import com.mobile.sipetani.Until.ServerAPI;
 
@@ -30,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.HashMap;

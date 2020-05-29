@@ -10,4 +10,5 @@ public class ServerAPI {
     public static final String URL_TIKET = "http://192.168.43.178/sipetani/ApiMobile/apiTiket";
     public static final String URL_PROFILE = "http://192.168.43.178/sipetani/ApiMobile/apiProfile";
     public static final String URL_EDIT_PROFILE = "http://192.168.43.178/sipetani/ApiMobile/apiEditProfile";
+    public static final String URL_PRINT = "http://192.168.43.178/sipetani/ApiMobile/apiPrint/";
 }

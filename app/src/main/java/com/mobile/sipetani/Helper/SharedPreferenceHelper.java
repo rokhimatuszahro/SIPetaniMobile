@@ -1,4 +1,4 @@
-package com.mobile.sipetani.SharedPreference;
+package com.mobile.sipetani.Helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;

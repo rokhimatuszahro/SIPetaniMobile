@@ -19,7 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.mobile.sipetani.Adapter.TiketAdapter;
 import com.mobile.sipetani.Model.DataModel;
-import com.mobile.sipetani.SharedPreference.SharedPreferenceHelper;
+import com.mobile.sipetani.Helper.SharedPreferenceHelper;
 import com.mobile.sipetani.Until.AppController;
 import com.mobile.sipetani.Until.ServerAPI;
 
@@ -65,8 +65,9 @@ public class Tiket extends AppCompatActivity implements TiketAdapter.OnTiketClic
     @Override
     public void onClick(View view, int position){
         DataModel dataTiket = mTiket.get(position);
-
-        Toast.makeText(Tiket.this, dataTiket.getNama(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(Tiket.this, print.class);
+        intent.putExtra("id_pemesanan", dataTiket.getId_pemesanan());
+        startActivity(intent);
     }
 
     private void loadTiket(){
@@ -90,6 +91,7 @@ public class Tiket extends AppCompatActivity implements TiketAdapter.OnTiketClic
                                     try {
                                         JSONObject data = tiket.getJSONObject(i);
                                         DataModel md = new DataModel();
+                                        md.setId_pemesanan(data.getString("id_pemesanan"));
                                         md.setNama(data.getString("nama_pemesan"));
                                         md.setTgl(data.getString("tanggal_pemesanan"));
                                         md.setTotal(data.getString("total"));
