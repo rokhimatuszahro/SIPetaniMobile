@@ -264,7 +264,7 @@ public class Profil extends AppCompatActivity {
                 map.put("passlama", InpPassLama);
                 map.put("passbaru", InpPassBaru);
                 map.put("inpemail", InpEMAIL);
-                map.put("inpenama", InpNAMA);
+                map.put("inpnama", InpNAMA);
                 map.put("inppin", InpPIN);
                 map.put("inpjenkel", InpJENKEL);
                 map.put("foto", gambar);
