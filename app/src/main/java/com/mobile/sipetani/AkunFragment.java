@@ -120,10 +120,6 @@ public class AkunFragment extends Fragment {
                                         .into(imgprofile);
                                 Akunemail.setText(data.getString("email"));
                                 Akunnama.setText(data.getString("nama"));
-                            } else {
-                                startActivity(new Intent(getActivity(), Navigation.class));
-                                Toast.makeText(getActivity(), res.getString("message"), Toast.LENGTH_SHORT).show();
-                                getActivity().onBackPressed();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
