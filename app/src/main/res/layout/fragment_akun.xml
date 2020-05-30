@@ -1,168 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/hijaugradient">
 
-    <ImageView
-        android:id="@+id/imgakun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        android:src="@drawable/akun"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="320dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="142dp"
-        app:cardBackgroundColor="@color/colorWhite"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="@+id/imgakun"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgprofil"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="24dp"
-                android:src="@drawable/ftprofil"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.072"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/colorBlue"/>
-
-            <TextView
-                android:id="@+id/akunUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="28dp"
-                android:text="Username"
-                android:textColor="@color/colorBlack"
-                android:textSize="21dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imgprofil"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/akunEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
-                android:layout_marginLeft="6dp"
-                android:text="SIPetani@gmail.com"
-                android:textColor="@color/colorHint"
-                android:textSize="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.075"
-                app:layout_constraintStart_toEndOf="@+id/imgprofil"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
+            android:layout_height="240dp"
+            android:background="@drawable/akun"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="320dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="205dp"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/akunProfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Profil"
-        android:textColor="@color/colorHint"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgprofil"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/ftprofil"
+                    app:civ_border_color="@color/colorBlue"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.072"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/garis1"
-        android:layout_width="260dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/colorHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/akunProfil" />
+                <TextView
+                    android:id="@+id/akunUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="28dp"
+                    android:text="Username"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="21dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imgprofil"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/akunTiket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Tiket"
-        android:textColor="@color/colorHint"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/garis1" />
+                <TextView
+                    android:id="@+id/akunEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="56dp"
+                    android:text="SIPetani@gmail.com"
+                    android:textColor="@color/colorHint"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.075"
+                    app:layout_constraintStart_toEndOf="@+id/imgprofil"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/garis2"
-        android:layout_width="260dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/colorHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/akunTiket" />
 
-    <TextView
-        android:id="@+id/akunDetailPemesanan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Detail Pemesanan"
-        android:textColor="@color/colorHint"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/garis2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:id="@+id/garis3"
-        android:layout_width="260dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/colorHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/akunDetailPemesanan" />
 
-    <TextView
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Keluar"
-        android:textColor="@color/colorHint"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/garis3" />
+        </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/akunProfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Profil"
+            android:textColor="@color/colorHint"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.097"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <View
+            android:id="@+id/garis1"
+            android:layout_width="260dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.231"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/akunProfil" />
+
+        <TextView
+            android:id="@+id/akunTiket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Tiket"
+            android:textColor="@color/colorHint"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.095"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/garis1" />
+
+        <View
+            android:id="@+id/garis2"
+            android:layout_width="260dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.231"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/akunTiket" />
+
+        <TextView
+            android:id="@+id/akunDetailPemesanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Detail Pemesanan"
+            android:textColor="@color/colorHint"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/garis2" />
+
+        <View
+            android:id="@+id/garis3"
+            android:layout_width="260dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.231"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/akunDetailPemesanan" />
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Keluar"
+            android:textColor="@color/colorHint"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/garis3" />
+
+        <ImageView
+            android:id="@+id/iconProfil"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="7dp"
+            android:src="@drawable/people"
+            app:layout_constraintBottom_toTopOf="@+id/garis1"
+            app:layout_constraintStart_toEndOf="@+id/akunProfil" />
+
+        <ImageView
+            android:id="@+id/iconTiket"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="7dp"
+            android:src="@drawable/validating_ticket"
+            app:layout_constraintBottom_toTopOf="@+id/garis2"
+            app:layout_constraintStart_toEndOf="@+id/akunTiket" />
+
+        <ImageView
+            android:id="@+id/iconDetailPemesanan"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="7dp"
+            android:src="@drawable/payment"
+            app:layout_constraintBottom_toTopOf="@+id/garis3"
+            app:layout_constraintStart_toEndOf="@+id/akunDetailPemesanan" />
+
+        <ImageView
+            android:id="@+id/iconLogout"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/logout"
+            app:layout_constraintStart_toEndOf="@+id/logout"
+            app:layout_constraintTop_toBottomOf="@+id/garis3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
