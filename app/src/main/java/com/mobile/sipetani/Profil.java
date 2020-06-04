@@ -2,7 +2,9 @@ package com.mobile.sipetani;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -52,6 +54,7 @@ public class Profil extends AppCompatActivity {
     Button btnEdit;
     SharedPreferenceHelper sp;
     ProgressDialog pd;
+    AlertDialog.Builder dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class Profil extends AppCompatActivity {
         newftprofile = (ImageView) findViewById(R.id.imgFtProfil);
         sp = new SharedPreferenceHelper(Profil.this);
         pd = new ProgressDialog(Profil.this);
+        dialog = new AlertDialog.Builder(this);
 
         btnEdit = (Button)findViewById(R.id.btnEdit);
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +85,18 @@ public class Profil extends AppCompatActivity {
                 groupJenkel = (RadioGroup) findViewById(R.id.jenKelEdit);
                 int RadioButtonId = groupJenkel.getCheckedRadioButtonId();
                 Jenkel = (RadioButton)findViewById(RadioButtonId);
-                editprofile();
+                String ID_USER = String.valueOf(sp.getId_user(0));
+                String EMAIL = sp.getEmail("email");
+                String InpEMAIL = inpEmail.getText().toString();
+                String InpNAMA = inpNama.getText().toString();
+                String InpPIN = inpPin.getText().toString();
+                String InpJENKEL = Jenkel.getText().toString();
+                String InpPassLama = inpPassLama.getText().toString();
+                String InpPassBaru = inpPassBaru.getText().toString();
+
+                if (validasi(InpEMAIL, InpNAMA, InpPIN, InpPassLama, InpPassBaru) == true){
+                    editprofile(ID_USER, EMAIL,InpEMAIL, InpNAMA, InpPIN, InpJENKEL, InpPassLama, InpPassBaru);
+                }
             }
         });
 
@@ -91,6 +106,56 @@ public class Profil extends AppCompatActivity {
                 selectImage();
             }
         });
+    }
+
+    protected boolean validasi(String InpEMAIL, String InpNAMA, String InpPIN, String InpPassLama, String InpPassBaru) {
+        if (InpEMAIL.isEmpty()){
+            inpEmail.setError("Email kosong, isikan Email Anda!");
+            inpEmail.requestFocus();
+            return false;
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(InpEMAIL).matches()){
+            inpEmail.setError("Format Email salah, isikan Email Anda!");
+            inpEmail.requestFocus();
+            return false;
+        }else if (InpNAMA.isEmpty()){
+            inpNama.setError("Nama tidak boleh kosong!");
+            inpNama.requestFocus();
+            return false;
+        }else if (InpPIN.isEmpty()){
+            inpPin.setError("PIN tidak boleh kosong!");
+            inpPin.requestFocus();
+            return false;
+        }else if (InpPIN.length() != 3){
+            inpPin.setError("PIN harus berjumlah 3 digit!");
+            inpPin.requestFocus();
+            return false;
+        }else if (!InpPassLama.isEmpty()){
+            if (InpPassBaru.isEmpty()){
+                inpPassBaru.setError("Password baru tidak boleh kosong!", null);
+                inpPassBaru.requestFocus();
+                return false;
+            }else if (InpPassBaru.length() < 4 || InpPassBaru.length() > 8){
+                inpPassBaru.setError("Password baru harus 4 - 8 digit!", null);
+                inpPassBaru.requestFocus();
+                return false;
+            }else{
+                return true;
+            }
+        }else if (!InpPassBaru.isEmpty()){
+            if (InpPassBaru.isEmpty()){
+                inpPassBaru.setError("Password baru tidak boleh kosong!", null);
+                inpPassBaru.requestFocus();
+                return false;
+            }else if (InpPassBaru.length() < 4 || InpPassBaru.length() > 8){
+                inpPassBaru.setError("Password baru harus 4 - 8 digit!", null);
+                inpPassBaru.requestFocus();
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            return true;
+        }
     }
 
     @Override
@@ -160,62 +225,7 @@ public class Profil extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(sendData);
     }
 
-    private void editprofile(){
-
-        final String ID_USER = String.valueOf(sp.getId_user(0));
-        final String EMAIL = sp.getEmail("email");
-        final String InpEMAIL = inpEmail.getText().toString();
-        final String InpNAMA = inpNama.getText().toString();
-        final String InpPIN = inpPin.getText().toString();
-        final String InpJENKEL = Jenkel.getText().toString();
-        final String InpPassLama = inpPassLama.getText().toString();
-        final String InpPassBaru = inpPassBaru.getText().toString();
-
-        try {
-            if (InpEMAIL.isEmpty()){
-                inpEmail.setError("Email kosong, isikan Email Anda!");
-                inpEmail.requestFocus();
-                return;
-            }else if (!Patterns.EMAIL_ADDRESS.matcher(InpEMAIL).matches()){
-                inpEmail.setError("Email salah, isikan Email dengan benar!");
-                inpEmail.requestFocus();
-                return;
-            }else if (InpNAMA.isEmpty()){
-                inpNama.setError("Nama tidak boleh kosong!");
-                inpNama.requestFocus();
-                return;
-            }else if (InpPIN.isEmpty()){
-                inpPin.setError("PIN tidak boleh kosong!");
-                inpPin.requestFocus();
-                return;
-            }else if (InpPIN.length() != 3){
-                inpPin.setError("PIN harus berjumlah 3 digit!");
-                inpPin.requestFocus();
-                return;
-            }else if (!InpPassLama.isEmpty()){
-                if (InpPassBaru.isEmpty()){
-                    inpPassBaru.setError("Password baru tidak boleh kosong!", null);
-                    inpPassBaru.requestFocus();
-                    return;
-                }else if (InpPassBaru.length() < 4 || InpPassBaru.length() > 8){
-                    inpPassBaru.setError("Password baru harus 4 - 8 digit!", null);
-                    inpPassBaru.requestFocus();
-                    return;
-                }
-            }else if (!InpPassBaru.isEmpty()){
-                if (InpPassBaru.isEmpty()){
-                    inpPassBaru.setError("Password baru tidak boleh kosong!", null);
-                    inpPassBaru.requestFocus();
-                    return;
-                }else if (InpPassBaru.length() < 4 || InpPassBaru.length() > 8){
-                    inpPassBaru.setError("Password baru harus 4 - 8 digit!", null);
-                    inpPassBaru.requestFocus();
-                    return;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void editprofile(final String ID_USER, final String EMAIL, final String InpEMAIL, final String InpNAMA, final String InpPIN, final String InpJENKEL, final String InpPassLama, final String InpPassBaru){
         pd.setMessage("Proses Edit Profile...");
         pd.setCancelable(false);
         pd.show();
@@ -228,18 +238,45 @@ public class Profil extends AppCompatActivity {
                         try {
                             JSONObject res = new JSONObject(response);
                             if (res.optString("success").equals("1")) {
-                                Toast.makeText(Profil.this, res.getString("message"), Toast.LENGTH_SHORT).show();
-                                detail_profile();
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        detail_profile();
+                                    }
+                                });
+                                dialog.show();
                             } else if (res.optString("success").equals("2")) {
-                                inpPassLama.setError(res.getString("message"), null);
-                                inpPassLama.requestFocus();
+                                Profil.this.inpPassLama.setError(res.getString("message"), null);
+                                Profil.this.inpPassLama.requestFocus();
                             } else if (res.optString("success").equals("3")) {
-                                sp.logout();
-                                startActivity(new Intent(Profil.this, MainActivity.class));
-                                Toast.makeText(Profil.this, res.getString("message"), Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
-                                Toast.makeText(Profil.this, res.getString("message"), Toast.LENGTH_SHORT).show();
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        sp.logout();
+                                        startActivity(new Intent(Profil.this, MainActivity.class));
+                                        finish();
+                                    }
+                                });
+                                dialog.show();
+                            }else{
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        sp.logout();
+                                        startActivity(new Intent(Profil.this, MainActivity.class));
+                                        finish();
+                                    }
+                                });
+                                dialog.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

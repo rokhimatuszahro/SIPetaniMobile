@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LupaPassword extends AppCompatActivity {
-    TextView buatAkun, punyaAkun, errorMessage;
+    TextView buatAkun, punyaAkun;
     EditText email, pin;
     Button btnReset;
     ProgressDialog pd;
@@ -38,7 +38,6 @@ public class LupaPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lupa_password);
 
-        errorMessage = (TextView)findViewById(R.id.error_message);
         email = (EditText)findViewById(R.id.Lupa_email);
         pin = (EditText)findViewById(R.id.Lupa_pin);
         pd = new ProgressDialog(LupaPassword.this);
@@ -49,7 +48,6 @@ public class LupaPassword extends AppCompatActivity {
             public void onClick(View v) {
                 Intent BuatAkun = new Intent(LupaPassword.this, BuatAkun.class);
                 startActivity(BuatAkun);
-
                 Toast.makeText(LupaPassword.this, "Buat Akun Baru", Toast.LENGTH_LONG).show();
             }
         });
@@ -60,7 +58,6 @@ public class LupaPassword extends AppCompatActivity {
             public void onClick(View v) {
                 Intent PunyaAkun = new Intent(LupaPassword.this, MainActivity.class);
                 startActivity(PunyaAkun);
-
                 Toast.makeText(LupaPassword.this, "Login!", Toast.LENGTH_LONG).show();
             }
         });
@@ -69,38 +66,38 @@ public class LupaPassword extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reset();
-                errorMessage.setVisibility(View.INVISIBLE);
+                String Email = email.getText().toString();
+                String Pin = pin.getText().toString();
+                if (validasi(Email, Pin)){
+                    reset(Email, Pin);
+                }
             }
         });
     }
 
-    private void reset(){
-        final String Email = email.getText().toString();
-        final String Pin = pin.getText().toString();
-
-        try {
-            if (Email.isEmpty()){
-                email.setError("Email tidak boleh kosong!");
-                email.requestFocus();
-                return;
-            }else if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
-                email.setError("Email salah, isikan Email dengan benar!");
-                email.requestFocus();
-                return;
-            }else if (Pin.isEmpty()){
-                pin.setError("PIN tidak boleh kosong!");
-                pin.requestFocus();
-                return;
-            }else if (Pin.length() != 3){
-                pin.setError("PIN harus berjumlah 3 digit!");
-                pin.requestFocus();
-                return;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    protected boolean validasi(String Email, String Pin){
+        if (Email.isEmpty()){
+            email.setError("Email tidak boleh kosong!");
+            email.requestFocus();
+            return false;
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
+            email.setError("Format Email salah, isikan Email Anda!");
+            email.requestFocus();
+            return false;
+        }else if (Pin.isEmpty()){
+            pin.setError("PIN tidak boleh kosong!");
+            pin.requestFocus();
+            return false;
+        }else if (Pin.length() != 3){
+            pin.setError("PIN harus berjumlah 3 digit!");
+            pin.requestFocus();
+            return false;
+        }else{
+            return true;
         }
+    }
 
+    private void reset(final String Email, final String Pin){
         pd.setMessage("Proses Reset Akun...");
         pd.setCancelable(false);
         pd.show();
@@ -113,10 +110,9 @@ public class LupaPassword extends AppCompatActivity {
                         try {
                             JSONObject res = new JSONObject(response);
                             if (res.optString("success").equals("1")) {
-                                errorMessage.setBackgroundResource(R.drawable.roundedcornersuccess);
-                                errorMessage.setText("Password Baru : " + res.getString("password_baru"));
-                                errorMessage.setTextColor(Color.parseColor("#25a146"));
-                                errorMessage.setVisibility(View.VISIBLE);
+                                Intent intent = new Intent(LupaPassword.this.getBaseContext(), ResetPassword.class);
+                                intent.putExtra("email", Email);
+                                LupaPassword.this.startActivity(intent);
                             } else if (res.optString("success").equals("2")) {
                                 pin.setError(res.getString("message"));
                                 pin.requestFocus();
@@ -145,6 +141,5 @@ public class LupaPassword extends AppCompatActivity {
             }
         };
         AppController.getInstance().addToRequestQueue(sendData);
-
     }
 }

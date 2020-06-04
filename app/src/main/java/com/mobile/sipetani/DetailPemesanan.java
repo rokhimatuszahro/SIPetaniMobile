@@ -43,6 +43,7 @@ public class DetailPemesanan extends AppCompatActivity {
     ImageView imgview;
     Bitmap bitmap;
     SharedPreferenceHelper sp;
+    AlertDialog.Builder dialog;
     ProgressDialog pd;
     private String gambar = "";
 
@@ -58,6 +59,7 @@ public class DetailPemesanan extends AppCompatActivity {
         jumlah = (TextView)findViewById(R.id.isiJumTiket);
         total = (TextView)findViewById(R.id.isiTotPembayaran);
         imgview = (ImageView)findViewById(R.id.imgUnggah);
+        dialog = new AlertDialog.Builder(this);
         pd = new ProgressDialog(DetailPemesanan.this);
         sp = new SharedPreferenceHelper(DetailPemesanan.this);
 
@@ -66,7 +68,7 @@ public class DetailPemesanan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (gambar.equals("") || gambar.equals(null)){
-                    Toast.makeText(DetailPemesanan.this, "Harap pilih foto bukti pembayaran!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailPemesanan.this, "Pilih Foto Bukti Pembayaran!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -146,12 +148,11 @@ public class DetailPemesanan extends AppCompatActivity {
                             JSONObject res = new JSONObject(response);
                             String error_status = res.getString("success");
                             if (error_status.equals("1")) {
-                                String error_msg = res.getString("message");
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DetailPemesanan.this);
-                                alertDialogBuilder.setTitle("Selamat Anda Berhasil Mengunggah Bukti Pembayaran!");
+                                alertDialogBuilder.setTitle(res.getString("title"));
                                 alertDialogBuilder.setCancelable(false);
-                                alertDialogBuilder.setMessage(error_msg);
-                                alertDialogBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                alertDialogBuilder.setMessage(res.getString("message"));
+                                alertDialogBuilder.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(DetailPemesanan.this, Navigation.class);
@@ -160,13 +161,12 @@ public class DetailPemesanan extends AppCompatActivity {
                                     }
                                 });
                                 alertDialogBuilder.show();
-                            } else {
-                                String error_msg = res.getString("message");
+                            } else if (error_status.equals("0")){
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DetailPemesanan.this);
-                                alertDialogBuilder.setTitle("Selamat Anda Dapat Mencetak Tiket!");
+                                alertDialogBuilder.setTitle(res.getString("title"));
                                 alertDialogBuilder.setCancelable(false);
-                                alertDialogBuilder.setMessage(error_msg);
-                                alertDialogBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                alertDialogBuilder.setMessage(res.getString("message"));
+                                alertDialogBuilder.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(DetailPemesanan.this, Navigation.class);
@@ -210,11 +210,11 @@ public class DetailPemesanan extends AppCompatActivity {
     }
 
     private void detail_pemesanan(){
+        final String Id_User = String.valueOf(sp.getId_user(0));
+
         pd.setMessage("Proses Detail Pemesanan...");
         pd.setCancelable(false);
         pd.show();
-
-        final String Id_User = String.valueOf(sp.getId_user(0));
 
         StringRequest sendData = new StringRequest(Request.Method.POST, ServerAPI.URL_DETAIL_PEMESANAN,
                 new Response.Listener<String>() {
@@ -232,9 +232,17 @@ public class DetailPemesanan extends AppCompatActivity {
                                 total.setText("IDR "+NumberFormat.getNumberInstance(Locale.US).format(data.getInt("total_pembayaran")));
                                 no.setText(data.getString("no_telp"));
                             } else if (res.optString("success").equals("2")) {
-                                startActivity(new Intent(DetailPemesanan.this, Navigation.class));
-                                Toast.makeText(DetailPemesanan.this, res.getString("message"), Toast.LENGTH_SHORT).show();
-                                finish();
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(DetailPemesanan.this, Navigation.class));
+                                        finish();
+                                    }
+                                });
+                                dialog.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
