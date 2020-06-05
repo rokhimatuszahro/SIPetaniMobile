@@ -24,9 +24,9 @@
             android:textColor="@color/colorHint"
             android:textSize="15dp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/Log_pass"
-            app:layout_constraintStart_toStartOf="@+id/Log_pass"
-            app:layout_constraintTop_toBottomOf="@+id/Log_pass" />
+            app:layout_constraintEnd_toEndOf="@+id/wrapperLogpass"
+            app:layout_constraintStart_toStartOf="@+id/wrapperLogpass"
+            app:layout_constraintTop_toBottomOf="@+id/wrapperLogpass" />
 
         <EditText
             android:id="@+id/Log_email"
@@ -75,7 +75,7 @@
             app:layout_constraintTop_toBottomOf="@+id/lpPass" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Log_pass"
+            android:id="@+id/wrapperLogpass"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -86,11 +86,12 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/pass2Reset"
+                android:id="@+id/Log_pass"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/roundedcorner"
-                android:hint="Ulangi Password"
+                android:hint="Password"
+                android:gravity="center"
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColorHint="@color/colorHint"
