@@ -71,11 +71,11 @@ public class Tiket extends AppCompatActivity implements TiketAdapter.OnTiketClic
     }
 
     private void loadTiket(){
+        final String ID_USER = String.valueOf(sp.getId_user(0));
+
         pd.setMessage("Load Tiket...");
         pd.setCancelable(false);
         pd.show();
-
-        final String ID_USER = String.valueOf(sp.getId_user(0));
 
         StringRequest reqData = new StringRequest(Request.Method.POST, ServerAPI.URL_TIKET,
                 new Response.Listener<String>() {

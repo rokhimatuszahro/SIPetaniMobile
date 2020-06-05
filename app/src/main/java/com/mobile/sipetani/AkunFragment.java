@@ -1,6 +1,8 @@
 package com.mobile.sipetani;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,6 +37,7 @@ public class AkunFragment extends Fragment {
     TextView profil, detailpemesanan, keluar, tiket, Akunemail, Akunnama;
     CircleImageView imgprofile;
     ProgressDialog pd;
+    AlertDialog.Builder dialog;
     SharedPreferenceHelper sp;
 
     @Nullable
@@ -46,6 +49,7 @@ public class AkunFragment extends Fragment {
         Akunemail = (TextView) viewroot.findViewById(R.id.akunEmail);
         Akunnama = (TextView) viewroot.findViewById(R.id.akunUsername);
         pd = new ProgressDialog(getActivity());
+        dialog = new AlertDialog.Builder(getActivity());
         sp = new SharedPreferenceHelper(getActivity());
 
         profil = (TextView) viewroot.findViewById(R.id.akunProfil);
@@ -71,11 +75,7 @@ public class AkunFragment extends Fragment {
                 pd.setMessage("Proses Logout...");
                 pd.setCancelable(false);
                 pd.show();
-                sp.logout();
-                pd.cancel();
-                startActivity(new Intent(getActivity(), MainActivity.class));
-                Toast.makeText(getActivity(), "Berhasil Keluar", Toast.LENGTH_SHORT).show();
-                getActivity().onBackPressed();
+                logout();
             }
         });
 
@@ -84,11 +84,63 @@ public class AkunFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), Tiket.class));
-                Toast.makeText(getActivity(), "Tiket Anda", Toast.LENGTH_LONG).show();
             }
         });
 
         return viewroot;
+    }
+
+    private void logout() {
+        final String Id_User = String.valueOf(sp.getId_user(0));
+
+        pd.setMessage("Proses Logout...");
+        pd.setCancelable(false);
+        pd.show();
+
+        StringRequest sendData = new StringRequest(Request.Method.POST, ServerAPI.URL_PROFILE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        pd.cancel();
+                        try {
+                            JSONObject res = new JSONObject(response);
+                            if (res.optString("success").equals("1")) {
+                                sp.logout();
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Terima Kasih", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(getActivity(), MainActivity.class));
+                                        getActivity().onBackPressed();
+                                    }
+                                });
+                                dialog.show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        pd.cancel();
+                        sp.logout();
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                        Toast.makeText(getActivity(), "pesan : Periksa Koneksi Anda", Toast.LENGTH_SHORT).show();
+                        getActivity().onBackPressed();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> map = new HashMap<>();
+                map.put("id_user", Id_User);
+                return map;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(sendData);
     }
 
     @Override
@@ -98,7 +150,6 @@ public class AkunFragment extends Fragment {
     }
 
     private void detail_profile(){
-
         final String Email = sp.getEmail("email");
 
         pd.setMessage("Proses Load Profile...");

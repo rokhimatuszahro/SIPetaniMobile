@@ -2,7 +2,9 @@ package com.mobile.sipetani;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -28,10 +30,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    TextView lupaPass, buatAkun, errorMessage;
+    TextView lupaPass, buatAkun;
     EditText email, password;
     Button btnlogin;
     ProgressDialog pd;
+    AlertDialog.Builder dialog;
     SharedPreferenceHelper sp;
 
     @Override
@@ -41,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         email = findViewById(R.id.Log_email);
         password = findViewById(R.id.Log_pass);
-        pd = new ProgressDialog(MainActivity.this);
-        sp = new SharedPreferenceHelper(MainActivity.this);
+        pd = new ProgressDialog(this);
+        dialog = new AlertDialog.Builder(this);
+        sp = new SharedPreferenceHelper(this);
 
         lupaPass = (TextView)findViewById(R.id.lpPass);
         lupaPass.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent lpPass = new Intent(MainActivity.this, LupaPassword.class);
                 startActivity(lpPass);
-
                 Toast.makeText(MainActivity.this, "Lupa Password?", Toast.LENGTH_LONG).show();
             }
         });
@@ -61,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent BuatAkun = new Intent(MainActivity.this, BuatAkun.class);
                 startActivity(BuatAkun);
-
-
                 Toast.makeText(MainActivity.this, "Buat Akun Baru!", Toast.LENGTH_LONG).show();
             }
         });
@@ -71,15 +72,18 @@ public class MainActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
-                errorMessage.setVisibility(View.INVISIBLE);
+                String Email = email.getText().toString();
+                String Password = password.getText().toString();
+                if (validasi(Email, Password) == true){
+                    login(Email, Password);
+                }
             }
         });
     }
 
     // Cek apakah sudah login
     @Override
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
         if (sp.getLogin(true)){
             startActivity(new Intent(MainActivity.this,Navigation.class));
@@ -87,33 +91,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void login()
-    {
-        // Validasi Form
-        errorMessage = findViewById(R.id.error_message);
-        String Email = email.getText().toString();
-        String Password = password.getText().toString();
-
-        try {
-            if (Email.isEmpty()){
-                email.setError("Email kosong, isikan Email Anda!");
-                email.requestFocus();
-                pd.cancel();
-                return;
-            }else if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
-                email.setError("Email salah, isikan Email dengan benar!");
-                email.requestFocus();
-                return;
-            }else if (Password.isEmpty()){
-                password.setError("Password kosong, isikan Password Anda!");
-                password.requestFocus();
-                pd.cancel();
-                return;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    protected boolean validasi(String Email, String Password){
+        if (Email.isEmpty()){
+            email.setError("Email kosong, isikan Email Anda!");
+            email.requestFocus();
+            return false;
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
+            email.setError("Format Email salah, isikan Email Anda!");
+            email.requestFocus();
+            return false;
+        }else if (Password.isEmpty()){
+            password.setError("Password kosong, isikan Password Anda!");
+            password.requestFocus();
+            return false;
+        }else{
+            return true;
         }
+    }
 
+    private void login(final String Email, final String Password){
         pd.setMessage("Proses Login...");
         pd.setCancelable(false);
         pd.show();
@@ -132,9 +128,16 @@ public class MainActivity extends AppCompatActivity {
                                 sp.setId_user(data.getInt("id_user"));
                                 sp.setLogin(true);
                                 startActivity(new Intent(MainActivity.this, Navigation.class));
-                            } else {
-                                errorMessage.setText(res.getString("message"));
-                                errorMessage.setVisibility(View.VISIBLE);
+                            } else if (res.optString("success").equals("0")){
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                });
+                                dialog.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -151,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError{
                 Map<String, String> map = new HashMap<>();
-                map.put("email", email.getText().toString());
-                map.put("password", password.getText().toString());
+                map.put("email", Email);
+                map.put("password", Password);
                 return map;
             }
         };

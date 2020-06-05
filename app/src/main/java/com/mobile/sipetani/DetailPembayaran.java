@@ -2,7 +2,9 @@ package com.mobile.sipetani;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +39,7 @@ public class DetailPembayaran extends AppCompatActivity {
     Button btnPesanTiket, btnBatalPesanTiket;
     SharedPreferenceHelper sp;
     ProgressDialog pd;
+    AlertDialog.Builder dialog;
     private String hari;
     private int total;
 
@@ -53,6 +56,7 @@ public class DetailPembayaran extends AppCompatActivity {
         totPembayaran = (TextView)findViewById(R.id.isiTotPembayaran);
         sp = new SharedPreferenceHelper(DetailPembayaran.this);
         pd = new ProgressDialog(DetailPembayaran.this);
+        dialog = new AlertDialog.Builder(this);
 
         // Menerima Parsing data dari fragment beranda
         Intent intent = getIntent();
@@ -73,9 +77,17 @@ public class DetailPembayaran extends AppCompatActivity {
         if (hari.equals("Saturday") || hari.equals("Sunday")){
             total = Integer.parseInt(jumlah) * 20000;
         }else if (hari.equals("Friday")){
-            startActivity(new Intent(DetailPembayaran.this, Navigation.class));
-            Toast.makeText(DetailPembayaran.this, "Hari Jumat Libur", Toast.LENGTH_SHORT).show();
-            finish();
+            dialog.setTitle("Notifikasi");
+            dialog.setCancelable(false);
+            dialog.setMessage("Hari Jumat Libur");
+            dialog.setPositiveButton("Terima kasih", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(DetailPembayaran.this, Navigation.class));
+                    finish();
+                }
+            });
+            dialog.show();
         }else{
             total = Integer.parseInt(jumlah) * 12000;
         }
@@ -89,7 +101,17 @@ public class DetailPembayaran extends AppCompatActivity {
         btnPesanTiket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pesantiket();
+                String Nama = namaPembeli.getText().toString();
+                String Email = sp.getEmail("email");
+                String noHp = noHpPembeli.getText().toString();
+                String Alamat = alamatPembeli.getText().toString();
+                String Jumlah = jumTiket.getText().toString();
+                String Tanggal_Pemesanan = tglPemesanan.getText().toString();
+                String Total = String.valueOf(total);
+                String UserId = String.valueOf(sp.getId_user(0));
+                if (validasi(Nama, Email, noHp, Alamat, Jumlah, Tanggal_Pemesanan,Total, UserId) == true){
+                    pesantiket(Nama, Email, noHp, Alamat, Jumlah, Tanggal_Pemesanan,Total, UserId);
+                }
             }
         });
 
@@ -103,42 +125,32 @@ public class DetailPembayaran extends AppCompatActivity {
         });
     }
 
-    private void pesantiket(){
-        final String Nama = namaPembeli.getText().toString();
-        final String Email = sp.getEmail("email");
-        final String noHp = noHpPembeli.getText().toString();
-        final String Alamat = alamatPembeli.getText().toString();
-        final String Jumlah = jumTiket.getText().toString();
-        final String Tanggal_Pemesanan = tglPemesanan.getText().toString();
-        final String Total = String.valueOf(total);
-        final String UserId = String.valueOf(sp.getId_user(0));
-
-        // Validasi Form pemesanan
-        try {
-            if (Nama.isEmpty()){
-                namaPembeli.setError("Nama pemesan tidak boleh kosong");
-                namaPembeli.requestFocus();
-                return;
-            }
-            if (noHp.isEmpty()){
-                noHpPembeli.setError("No Hp tidak boleh kosong");
-                noHpPembeli.requestFocus();
-                return;
-            }
-            if (noHp.length()<11 || noHp.length()>13){
-                noHpPembeli.setError("No Hp harus 11 atau 12 digit");
-                noHpPembeli.requestFocus();
-                return;
-            }
-            if (Alamat.isEmpty()){
-                alamatPembeli.setError("Almat tidak boleh kosong");
-                alamatPembeli.requestFocus();
-                return;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    protected boolean validasi(String Nama, String Email, String noHp, String Alamat, String Jumlah, String Tanggal_Pemesanan, String Total, String UserId){
+        if (Nama.isEmpty()){
+            namaPembeli.setError("Nama pemesan tidak boleh kosong");
+            namaPembeli.requestFocus();
+            return false;
         }
+        if (noHp.isEmpty()){
+            noHpPembeli.setError("No Hp tidak boleh kosong");
+            noHpPembeli.requestFocus();
+            return false;
+        }
+        if (noHp.length()<11 || noHp.length()>13){
+            noHpPembeli.setError("No Hp harus 11 atau 12 digit");
+            noHpPembeli.requestFocus();
+            return false;
+        }
+        if (Alamat.isEmpty()){
+            alamatPembeli.setError("Almat tidak boleh kosong");
+            alamatPembeli.requestFocus();
+            return false;
+        }else{
+            return true;
+        }
+    }
 
+    private void pesantiket(final String Nama, final String Email, final String noHp, final String Alamat, final String Jumlah, final String Tanggal_Pemesanan, final String Total, final String UserId){
         pd.setMessage("Proses Pemesanan Tiket....");
         pd.setCancelable(false);
         pd.show();
@@ -152,17 +164,34 @@ public class DetailPembayaran extends AppCompatActivity {
                             JSONObject res = new JSONObject(response);
                             if (!res.optString("success").equals("2")) {
                                 if (res.optString("success").equals("1")) {
-                                    startActivity(new Intent(DetailPembayaran.this, DetailPemesanan.class));
-                                    finish();
+                                    dialog.setTitle(res.getString("title"));
+                                    dialog.setCancelable(false);
+                                    dialog.setMessage(res.getString("message"));
+                                    dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            startActivity(new Intent(DetailPembayaran.this, DetailPemesanan.class));
+                                            finish();
+                                        }
+                                    });
+                                    dialog.show();
                                 } else {
                                     startActivity(new Intent(DetailPembayaran.this, Navigation.class));
                                     Toast.makeText(DetailPembayaran.this, res.getString("message"), Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                             } else {
-                                startActivity(new Intent(DetailPembayaran.this, Navigation.class));
-                                Toast.makeText(DetailPembayaran.this, res.getString("message"), Toast.LENGTH_SHORT).show();
-                                finish();
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(DetailPembayaran.this, Navigation.class));
+                                        finish();
+                                    }
+                                });
+                                dialog.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -194,6 +223,5 @@ public class DetailPembayaran extends AppCompatActivity {
             }
         };
         AppController.getInstance().addToRequestQueue(sendData);
-
     }
 }
