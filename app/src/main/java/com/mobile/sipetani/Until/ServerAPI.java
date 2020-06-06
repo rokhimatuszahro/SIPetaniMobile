@@ -14,4 +14,5 @@ public class ServerAPI {
     public static final String URL_FOTO_PROFILE = "http://192.168.43.120/sipetani";
     public static final String URL_EDIT_PROFILE = "http://192.168.43.120/sipetani/apimobile/apieditprofile";
     public static final String URL_PRINT = "http://192.168.43.120/sipetani/ApiMobile/apiPrint/";
+}
 

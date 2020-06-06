@@ -101,7 +101,7 @@ public class AkunFragment extends Fragment {
         pd.setCancelable(false);
         pd.show();
 
-        StringRequest sendData = new StringRequest(Request.Method.POST, ServerAPI.URL_PROFILE,
+        StringRequest sendData = new StringRequest(Request.Method.POST, ServerAPI.URL_LOGOUT,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
