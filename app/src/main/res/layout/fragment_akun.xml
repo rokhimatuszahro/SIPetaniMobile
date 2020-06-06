@@ -41,7 +41,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="14dp"
                     android:text="Selamat Berlibur"
                     android:textColor="@color/titleBar"
                     android:textSize="21dp"
@@ -78,12 +78,12 @@
                     android:id="@+id/akunEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="100dp"
                     android:text="SIPetani@gmail.com"
                     android:textColor="@color/colorHint"
                     android:textSize="10dp"
-                    app:layout_constraintEnd_toEndOf="@+id/akunUsername"
-                    app:layout_constraintStart_toStartOf="@+id/akunUsername"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/akunUsername" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

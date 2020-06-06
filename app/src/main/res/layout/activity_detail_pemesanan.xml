@@ -335,10 +335,11 @@
                         android:id="@+id/selamat2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
                         android:text="Tiket"
                         android:textColor="@color/titleBar"
                         android:textSize="16dp"
-                        app:layout_constraintStart_toStartOf="@+id/selamat1"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/selamat1" />
 
                     <TextView
@@ -348,7 +349,8 @@
                         android:text="Bersama SIPetani"
                         android:textColor="@color/colorBlack"
                         android:textSize="16dp"
-                        app:layout_constraintEnd_toEndOf="@+id/selamat1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.079"
                         app:layout_constraintStart_toEndOf="@+id/selamat2"
                         app:layout_constraintTop_toBottomOf="@+id/selamat1" />
 
@@ -396,7 +398,7 @@
                         android:id="@+id/ket3"
                         android:layout_width="212dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="16dp"
                         android:text="Anda dapat Mencetak Tiket dan"
                         android:textColor="@color/colorHint"
@@ -435,7 +437,7 @@
 
                         <ImageView
                             android:id="@+id/imgUnggah"
-                            android:layout_width="150dp"
+                            android:layout_width="100dp"
                             android:layout_height="80dp"
                             android:background="@drawable/uploadfoto"
                             app:layout_constraintBottom_toBottomOf="parent"
