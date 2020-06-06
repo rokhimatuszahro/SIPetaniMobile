@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class ResetPassword extends AppCompatActivity {
 
-    TextView buatAkun, punyaAkun, errorMessage;
+    TextView buatAkun, punyaAkun;
     EditText pass1, pass2;
     Button reset;
     ProgressDialog pd;
@@ -41,7 +41,6 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        errorMessage = (TextView)findViewById(R.id.error_message);
         pass1 = (EditText)findViewById(R.id.pass1Reset);
         pass2 = (EditText)findViewById(R.id.pass2Reset);
         pd = new ProgressDialog(this);

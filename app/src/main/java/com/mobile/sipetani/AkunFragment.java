@@ -4,15 +4,18 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
@@ -34,7 +37,8 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AkunFragment extends Fragment {
-    TextView profil, detailpemesanan, keluar, tiket, Akunemail, Akunnama;
+    TextView Akunemail, Akunnama;
+    CardView profil, detailpemesanan, keluar, tiket;
     CircleImageView imgprofile;
     ProgressDialog pd;
     AlertDialog.Builder dialog;
@@ -52,7 +56,7 @@ public class AkunFragment extends Fragment {
         dialog = new AlertDialog.Builder(getActivity());
         sp = new SharedPreferenceHelper(getActivity());
 
-        profil = (TextView) viewroot.findViewById(R.id.akunProfil);
+        profil = (CardView) viewroot.findViewById(R.id.akunProfil);
         profil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +64,7 @@ public class AkunFragment extends Fragment {
             }
         });
 
-        detailpemesanan = (TextView) viewroot.findViewById(R.id.akunDetailPemesanan);
+        detailpemesanan = (CardView) viewroot.findViewById(R.id.akunDetailPemesanan);
         detailpemesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +72,7 @@ public class AkunFragment extends Fragment {
             }
         });
 
-        keluar = (TextView) viewroot.findViewById(R.id.logout);
+        keluar = (CardView) viewroot.findViewById(R.id.logout);
         keluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +83,7 @@ public class AkunFragment extends Fragment {
             }
         });
 
-        tiket = (TextView) viewroot.findViewById(R.id.akunTiket);
+        tiket = (CardView) viewroot.findViewById(R.id.akunTiket);
         tiket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +169,7 @@ public class AkunFragment extends Fragment {
                             JSONObject res = new JSONObject(response);
                             if (res.optString("success").equals("1")) {
                                 JSONObject data = new JSONObject(res.getString("profile"));
-                                Picasso.get().load(res.getString("foto"))
+                                Picasso.get().load(ServerAPI.URL_FOTO_PROFILE+res.getString("foto"))
                                         .placeholder(R.drawable.ftprofil)
                                         .into(imgprofile);
                                 Akunemail.setText(data.getString("email"));

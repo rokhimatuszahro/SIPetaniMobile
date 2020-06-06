@@ -40,7 +40,7 @@ public class DetailPemesanan extends AppCompatActivity {
 
     TextView nama, alamat, no, tgl, jumlah, total;
     Button btnUnggah;
-    ImageView imgview;
+    ImageView imgview, iconUploadBukti;
     Bitmap bitmap;
     SharedPreferenceHelper sp;
     AlertDialog.Builder dialog;
@@ -59,6 +59,7 @@ public class DetailPemesanan extends AppCompatActivity {
         jumlah = (TextView)findViewById(R.id.isiJumTiket);
         total = (TextView)findViewById(R.id.isiTotPembayaran);
         imgview = (ImageView)findViewById(R.id.imgUnggah);
+        iconUploadBukti = (ImageView)findViewById(R.id.iconUploadBukti);
         dialog = new AlertDialog.Builder(this);
         pd = new ProgressDialog(DetailPemesanan.this);
         sp = new SharedPreferenceHelper(DetailPemesanan.this);
@@ -101,6 +102,7 @@ public class DetailPemesanan extends AppCompatActivity {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                     bitmap = getResizedBitmap(bitmap, 400);
                     imgview.setImageBitmap(bitmap);
+                    iconUploadBukti.setVisibility(View.GONE);
                     gambar = getStringImage(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -155,6 +157,8 @@ public class DetailPemesanan extends AppCompatActivity {
                                 alertDialogBuilder.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        imgview.setImageBitmap(null);
+                                        iconUploadBukti.setVisibility(View.VISIBLE);
                                         Intent intent = new Intent(DetailPemesanan.this, Navigation.class);
                                         startActivity(intent);
                                         finish();

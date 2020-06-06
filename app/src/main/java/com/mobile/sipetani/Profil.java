@@ -49,7 +49,7 @@ public class Profil extends AppCompatActivity {
     RadioGroup groupJenkel;
     RadioButton Jenkel, Rb_Laki, Rb_Perempuan;
     CircleImageView ftprofile;
-    ImageView newftprofile;
+    ImageView newftprofile, iconImageProfile;
     Bitmap bitmap;
     Button btnEdit;
     SharedPreferenceHelper sp;
@@ -74,6 +74,7 @@ public class Profil extends AppCompatActivity {
         Rb_Perempuan = (RadioButton) findViewById(R.id.rbperempuan);
         ftprofile = (CircleImageView) findViewById(R.id.imgFotoProfil2);
         newftprofile = (ImageView) findViewById(R.id.imgFtProfil);
+        iconImageProfile = (ImageView) findViewById(R.id.iconImageProfile);
         sp = new SharedPreferenceHelper(Profil.this);
         pd = new ProgressDialog(Profil.this);
         dialog = new AlertDialog.Builder(this);
@@ -180,7 +181,7 @@ public class Profil extends AppCompatActivity {
                             JSONObject res = new JSONObject(response);
                             if (res.optString("success").equals("1")) {
                                 JSONObject data = new JSONObject(res.getString("profile"));
-                                Picasso.get().load(res.getString("foto"))
+                                Picasso.get().load(ServerAPI.URL_FOTO_PROFILE+res.getString("foto"))
                                         .placeholder(R.drawable.ftprofil)
                                         .into(ftprofile);
                                 if (data.optString("jenkel").equals(Rb_Laki.getText().toString())) {
@@ -244,6 +245,8 @@ public class Profil extends AppCompatActivity {
                                 dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        iconImageProfile.setVisibility(View.VISIBLE);
+                                        newftprofile.setImageBitmap(null);
                                         detail_profile();
                                     }
                                 });
@@ -326,6 +329,7 @@ public class Profil extends AppCompatActivity {
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                     bitmap = getResizedBitmap(bitmap, 400);
+                    iconImageProfile.setVisibility(View.GONE);
                     newftprofile.setImageBitmap(bitmap);
                     gambar = getStringImage(bitmap);
                 } catch (IOException e) {

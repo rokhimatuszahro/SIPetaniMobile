@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/hijaugradient">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+        <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="250dp"
             android:background="@drawable/akun"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="320dp"
+            android:layout_width="0dp"
             android:layout_height="130dp"
-            android:layout_marginTop="205dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginEnd="30dp"
             app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="10dp"
             app:cardElevation="20dp"
@@ -37,16 +37,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Selamat Berlibur"
+                    android:textColor="@color/titleBar"
+                    android:textSize="21dp"
+                    app:layout_constraintStart_toStartOf="@+id/akunUsername"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgprofil"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_marginTop="24dp"
                     android:src="@drawable/ftprofil"
                     app:civ_border_color="@color/colorBlue"
                     app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.072"
+                    app:layout_constraintHorizontal_bias="0.1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,161 +65,303 @@
                     android:id="@+id/akunUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
                     android:text="Username"
                     android:textColor="@color/colorBlack"
                     android:textSize="21dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgprofil"
                     app:layout_constraintStart_toEndOf="@+id/imgprofil"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/imgprofil"
+                    app:layout_constraintVertical_bias="0.39" />
 
                 <TextView
                     android:id="@+id/akunEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="3dp"
                     android:text="SIPetani@gmail.com"
                     android:textColor="@color/colorHint"
                     android:textSize="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.075"
-                    app:layout_constraintStart_toEndOf="@+id/imgprofil"
-                    app:layout_constraintTop_toTopOf="parent" />
-
+                    app:layout_constraintEnd_toEndOf="@+id/akunUsername"
+                    app:layout_constraintStart_toStartOf="@+id/akunUsername"
+                    app:layout_constraintTop_toBottomOf="@+id/akunUsername" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/akunProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Profil"
-            android:textColor="@color/colorHint"
-            android:textSize="15dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/roundedcornertop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.097"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-        <View
-            android:id="@+id/garis1"
-            android:layout_width="260dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp"
-            android:background="@color/colorHint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.231"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/akunProfil" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/akunProfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.25">
 
-        <TextView
-            android:id="@+id/akunTiket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Tiket"
-            android:textColor="@color/colorHint"
-            android:textSize="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.095"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/garis1" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/garis2"
-            android:layout_width="260dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp"
-            android:background="@color/colorHint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.231"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/akunTiket" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/people"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/akunDetailPemesanan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Detail Pemesanan"
-            android:textColor="@color/colorHint"
-            android:textSize="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/garis2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-        <View
-            android:id="@+id/garis3"
-            android:layout_width="260dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp"
-            android:background="@color/colorHint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.231"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/akunDetailPemesanan" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/akunTiket"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/akunProfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/akunProfil"
+                app:layout_constraintTop_toTopOf="@+id/akunProfil">
 
-        <TextView
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Keluar"
-            android:textColor="@color/colorHint"
-            android:textSize="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/garis3" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iconProfil"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="7dp"
-            android:src="@drawable/people"
-            app:layout_constraintBottom_toTopOf="@+id/garis1"
-            app:layout_constraintStart_toEndOf="@+id/akunProfil" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/validating_ticket"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iconTiket"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="7dp"
-            android:src="@drawable/validating_ticket"
-            app:layout_constraintBottom_toTopOf="@+id/garis2"
-            app:layout_constraintStart_toEndOf="@+id/akunTiket" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:id="@+id/iconDetailPemesanan"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="7dp"
-            android:src="@drawable/payment"
-            app:layout_constraintBottom_toTopOf="@+id/garis3"
-            app:layout_constraintStart_toEndOf="@+id/akunDetailPemesanan" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/akunDetailPemesanan"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="25dp"
+                android:clickable="true"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/akunProfil"
+                app:layout_constraintStart_toStartOf="@+id/akunProfil"
+                app:layout_constraintTop_toBottomOf="@+id/akunProfil"
+                app:layout_constraintVertical_bias="0.100000024">
 
-        <ImageView
-            android:id="@+id/iconLogout"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="14dp"
-            android:src="@drawable/logout"
-            app:layout_constraintStart_toEndOf="@+id/logout"
-            app:layout_constraintTop_toBottomOf="@+id/garis3" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/payment"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/logout"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/akunDetailPemesanan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/akunDetailPemesanan"
+                app:layout_constraintTop_toTopOf="@+id/akunDetailPemesanan">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/logout"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="170dp"
+                android:layout_marginBottom="60dp"
+                android:text="By Golden Eagle Team"
+                android:textColor="@color/colorHint"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/logout"
+                app:layout_constraintStart_toStartOf="@+id/akunDetailPemesanan"
+                app:layout_constraintTop_toBottomOf="@+id/logout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent">-->
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    android:id="@+id/constraintLayout2"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="240dp"-->
+<!--    android:background="@drawable/akun"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toTopOf="parent" >-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+
+
+
+<!--<View-->
+<!--    android:id="@+id/garis1"-->
+<!--    android:layout_width="260dp"-->
+<!--    android:layout_height="1dp"-->
+<!--    android:layout_marginTop="4dp"-->
+<!--    android:background="@color/colorHint"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintHorizontal_bias="0.231"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/akunProfil" />-->
+
+<!--<TextView-->
+<!--    android:id="@+id/akunTiket"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="12dp"-->
+<!--    android:text="Tiket"-->
+<!--    android:textColor="@color/colorHint"-->
+<!--    android:textSize="15dp"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintHorizontal_bias="0.095"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/garis1" />-->
+
+<!--<View-->
+<!--    android:id="@+id/garis2"-->
+<!--    android:layout_width="260dp"-->
+<!--    android:layout_height="1dp"-->
+<!--    android:layout_marginTop="4dp"-->
+<!--    android:background="@color/colorHint"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintHorizontal_bias="0.231"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/akunTiket" />-->
+
+<!--<TextView-->
+<!--    android:id="@+id/akunDetailPemesanan"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="12dp"-->
+<!--    android:text="Detail Pemesanan"-->
+<!--    android:textColor="@color/colorHint"-->
+<!--    android:textSize="15dp"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintHorizontal_bias="0.12"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/garis2" />-->
+
+<!--<View-->
+<!--    android:id="@+id/garis3"-->
+<!--    android:layout_width="260dp"-->
+<!--    android:layout_height="1dp"-->
+<!--    android:layout_marginTop="4dp"-->
+<!--    android:background="@color/colorHint"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintHorizontal_bias="0.231"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/akunDetailPemesanan" />-->
+
+<!--<TextView-->
+<!--    android:id="@+id/logout"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="12dp"-->
+<!--    android:text="Keluar"-->
+<!--    android:textColor="@color/colorHint"-->
+<!--    android:textSize="15dp"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintHorizontal_bias="0.099"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/garis3" />-->
+
+<!--<ImageView-->
+<!--    android:id="@+id/iconProfil"-->
+<!--    android:layout_width="15dp"-->
+<!--    android:layout_height="15dp"-->
+<!--    android:layout_marginLeft="5dp"-->
+<!--    android:layout_marginBottom="7dp"-->
+<!--    android:src="@drawable/people"-->
+<!--    app:layout_constraintBottom_toTopOf="@+id/garis1"-->
+<!--    app:layout_constraintStart_toEndOf="@+id/akunProfil" />-->
+
+<!--<ImageView-->
+<!--    android:id="@+id/iconTiket"-->
+<!--    android:layout_width="15dp"-->
+<!--    android:layout_height="15dp"-->
+<!--    android:layout_marginLeft="5dp"-->
+<!--    android:layout_marginBottom="7dp"-->
+<!--    android:src="@drawable/validating_ticket"-->
+<!--    app:layout_constraintBottom_toTopOf="@+id/garis2"-->
+<!--    app:layout_constraintStart_toEndOf="@+id/akunTiket" />-->
+
+<!--<ImageView-->
+<!--    android:id="@+id/iconDetailPemesanan"-->
+<!--    android:layout_width="15dp"-->
+<!--    android:layout_height="15dp"-->
+<!--    android:layout_marginLeft="5dp"-->
+<!--    android:layout_marginBottom="7dp"-->
+<!--    android:src="@drawable/payment"-->
+<!--    app:layout_constraintBottom_toTopOf="@+id/garis3"-->
+<!--    app:layout_constraintStart_toEndOf="@+id/akunDetailPemesanan" />-->
+
+<!--<ImageView-->
+<!--    android:id="@+id/iconLogout"-->
+<!--    android:layout_width="15dp"-->
+<!--    android:layout_height="15dp"-->
+<!--    android:layout_marginStart="7dp"-->
+<!--    android:layout_marginTop="14dp"-->
+<!--    android:src="@drawable/logout"-->
+<!--    app:layout_constraintStart_toEndOf="@+id/logout"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/garis3" />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
