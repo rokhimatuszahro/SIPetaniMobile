@@ -163,25 +163,19 @@ public class DetailPembayaran extends AppCompatActivity {
                         pd.cancel();
                         try {
                             JSONObject res = new JSONObject(response);
-                            if (!res.optString("success").equals("2")) {
-                                if (res.optString("success").equals("1")) {
-                                    dialog.setTitle(res.getString("title"));
-                                    dialog.setCancelable(false);
-                                    dialog.setMessage(res.getString("message"));
-                                    dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            startActivity(new Intent(DetailPembayaran.this, DetailPemesanan.class));
-                                            finish();
-                                        }
-                                    });
-                                    dialog.show();
-                                } else {
-                                    startActivity(new Intent(DetailPembayaran.this, Navigation.class));
-                                    Toast.makeText(DetailPembayaran.this, res.getString("message"), Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            } else {
+                            if (res.optString("success").equals("1")) {
+                                dialog.setTitle(res.getString("title"));
+                                dialog.setCancelable(false);
+                                dialog.setMessage(res.getString("message"));
+                                dialog.setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(DetailPembayaran.this, DetailPemesanan.class));
+                                        finish();
+                                    }
+                                });
+                                dialog.show();
+                            } else if (res.optString("success").equals("2")) {
                                 dialog.setTitle(res.getString("title"));
                                 dialog.setCancelable(false);
                                 dialog.setMessage(res.getString("message"));
@@ -193,6 +187,10 @@ public class DetailPembayaran extends AppCompatActivity {
                                     }
                                 });
                                 dialog.show();
+                            } else {
+                                startActivity(new Intent(DetailPembayaran.this, Navigation.class));
+                                Toast.makeText(DetailPembayaran.this, res.getString("message"), Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
