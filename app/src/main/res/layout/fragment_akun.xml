@@ -213,7 +213,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="160dp"
                 android:layout_marginBottom="20dp"
                 android:text="By Golden Eagle Team"
                 android:textColor="@color/colorHint"
