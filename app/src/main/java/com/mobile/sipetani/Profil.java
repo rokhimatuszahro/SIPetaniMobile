@@ -328,7 +328,7 @@ public class Profil extends AppCompatActivity {
                 Uri selectedImage = data.getData();
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                    bitmap = getResizedBitmap(bitmap, 400);
+                    bitmap = getResizedBitmap(bitmap, 720);
                     iconImageProfile.setVisibility(View.GONE);
                     newftprofile.setImageBitmap(bitmap);
                     gambar = getStringImage(bitmap);
@@ -341,7 +341,7 @@ public class Profil extends AppCompatActivity {
 
     public String getStringImage(Bitmap image){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        image.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] imgbytearray = baos.toByteArray();
         String img = Base64.encodeToString(imgbytearray, Base64.DEFAULT);
         return img;
