@@ -22,16 +22,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="90dp"
             android:text="Info Akun"
             android:textColor="@color/colorBlack"
+            android:textSize="21dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:textSize="21dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView1"
@@ -308,9 +308,11 @@
 
                     <EditText
                         android:id="@+id/emailEdit"
-                        android:layout_width="260dp"
+                        android:layout_width="0dp"
                         android:layout_height="38dp"
+                        android:layout_marginStart="40dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginEnd="40dp"
                         android:background="@drawable/roundedcorner"
                         android:gravity="center"
                         android:hint="GoldeEagle@gmail.com"
@@ -324,7 +326,7 @@
 
                     <EditText
                         android:id="@+id/namaEdit"
-                        android:layout_width="260dp"
+                        android:layout_width="0dp"
                         android:layout_height="38dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/roundedcorner"
@@ -334,13 +336,13 @@
                         android:padding="10dp"
                         android:textColorHint="@color/colorHint"
                         android:textSize="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/emailEdit"
+                        app:layout_constraintStart_toStartOf="@+id/emailEdit"
                         app:layout_constraintTop_toBottomOf="@+id/emailEdit" />
 
                     <EditText
                         android:id="@+id/pinEdit"
-                        android:layout_width="260dp"
+                        android:layout_width="0dp"
                         android:layout_height="38dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/roundedcorner"
@@ -350,23 +352,23 @@
                         android:padding="10dp"
                         android:textColorHint="@color/colorHint"
                         android:textSize="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/namaEdit"
+                        app:layout_constraintStart_toStartOf="@+id/namaEdit"
                         app:layout_constraintTop_toBottomOf="@+id/namaEdit" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/wrappasslama"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/pinEdit"
+                        app:layout_constraintStart_toStartOf="@+id/pinEdit"
                         app:layout_constraintTop_toBottomOf="@+id/pinEdit"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/passLamaEdit"
-                            android:layout_width="260dp"
+                            android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:background="@drawable/roundedcorner"
                             android:hint="Password Lama"
@@ -378,17 +380,17 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/wrappassbaru"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/wrappasslama"
+                        app:layout_constraintStart_toStartOf="@+id/wrappasslama"
                         app:layout_constraintTop_toBottomOf="@+id/wrappasslama"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/passBaruEdit"
-                            android:layout_width="260dp"
+                            android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:background="@drawable/roundedcorner"
                             android:hint="Password Baru"
@@ -402,25 +404,19 @@
                         android:id="@+id/textView12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="10dp"
                         android:text="Jenis Kelamin"
                         android:textColor="@color/colorHint"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.099"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/wrappassbaru"
                         app:layout_constraintTop_toBottomOf="@+id/wrappassbaru" />
 
                     <RadioGroup
                         android:id="@+id/jenKelEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.245"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textView12"
                         app:layout_constraintTop_toBottomOf="@id/textView12">
 
                         <RadioButton
@@ -447,13 +443,10 @@
                         android:id="@+id/textView13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="10dp"
                         android:text="Foto Profil"
                         android:textColor="@color/colorHint"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.099"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/jenKelEdit"
                         app:layout_constraintTop_toBottomOf="@+id/jenKelEdit" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -467,7 +460,7 @@
                         <ImageView
                             android:id="@+id/imgFtProfil"
                             android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_height="80dp"
                             android:background="@drawable/uploadfoto"
                             android:clickable="true"
                             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,18 +1,18 @@
 package com.mobile.sipetani.Until;
 
 public class ServerAPI {
-    public static final String URL_REGISTRASI = "http://192.168.43.178/sipetani/apimobile/apiregistrasi";
-    public static final String URL_LOGIN = "http://192.168.43.178/sipetani/apimobile/apilogin";
-    public static final String URL_LOGOUT = "http://192.168.43.178/sipetani/apimobile/apilogout";
-    public static final String URL_RESET_AKUN = "http://192.168.43.178/sipetani/apimobile/apiresetAkun";
-    public static final String URL_RESET = "http://192.168.43.120/sipetani/apimobile/apireset";
-    public static final String URL_PEMESANAN = "http://192.168.43.178/sipetani/apimobile/apipemesanan";
-    public static final String URL_DETAIL_PEMESANAN = "http://192.168.43.178/sipetani/apimobile/apidetailpemesanan";
-    public static final String URL_UPLOAD_BUKTI = "http://192.168.43.178/sipetani/apimobile/apiuploadbukti";
-    public static final String URL_TIKET = "http://192.168.43.178/sipetani/apimobile/apitiket";
-    public static final String URL_PROFILE = "http://192.168.43.178/sipetani/apimobile/apiprofile";
-    public static final String URL_FOTO_PROFILE = "http://192.168.43.178/sipetani";
-    public static final String URL_EDIT_PROFILE = "http://192.168.43.178/sipetani/apimobile/apieditprofile";
-    public static final String URL_PRINT = "http://192.168.43.178/sipetani/ApiMobile/apiPrint/";
+    public static final String URL_REGISTRASI = "https://tikettamanbotani.mif-project.com/apimobile/apiregistrasi";
+    public static final String URL_LOGIN = "https://tikettamanbotani.mif-project.com/apimobile/apilogin";
+    public static final String URL_LOGOUT = "https://tikettamanbotani.mif-project.com/apimobile/apilogout";
+    public static final String URL_RESET_AKUN = "https://tikettamanbotani.mif-project.com/apimobile/apiresetAkun";
+    public static final String URL_RESET = "https://tikettamanbotani.mif-project.com/apimobile/apireset";
+    public static final String URL_PEMESANAN = "https://tikettamanbotani.mif-project.com/apimobile/apipemesanan";
+    public static final String URL_DETAIL_PEMESANAN = "https://tikettamanbotani.mif-project.com/apimobile/apidetailpemesanan";
+    public static final String URL_UPLOAD_BUKTI = "https://tikettamanbotani.mif-project.com/apimobile/apiuploadbukti";
+    public static final String URL_TIKET = "https://tikettamanbotani.mif-project.com/apimobile/apitiket";
+    public static final String URL_PROFILE = "https://tikettamanbotani.mif-project.com/apimobile/apiprofile";
+    public static final String URL_FOTO_PROFILE = "https://tikettamanbotani.mif-project.com";
+    public static final String URL_EDIT_PROFILE = "https://tikettamanbotani.mif-project.com/apimobile/apieditprofile";
+    public static final String URL_PRINT = "https://tikettamanbotani.mif-project.com/ApiMobile/apiPrint/";
 }
 

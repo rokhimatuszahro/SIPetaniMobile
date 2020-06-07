@@ -16,7 +16,6 @@
         android:layout_height="60dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:visibility="gone"
         android:background="@drawable/roundedcorner"
         android:backgroundTint="@color/endColor"
         app:layout_constraintBottom_toBottomOf="parent"
